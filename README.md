@@ -1,5 +1,7 @@
 Frontend repository for city online assignment.
 
+
+
 Steps for running the frontend project:
 
 1)Navigate into the folder where you have cloned the frontend repository.
