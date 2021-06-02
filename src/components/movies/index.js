@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, Datagrid, Create, EditButton, Edit, TextField, Show, SimpleShowLayout} from 'react-admin';
+import { List, Datagrid, Create, EditButton, Edit, TextField, NumberField, Show, SimpleShowLayout} from 'react-admin';
 import { MoviesForm } from './moviesForm';
 
 
@@ -10,7 +10,7 @@ export const MoviesList = props => {
 					<TextField source="name" />
           <TextField source="releaseYear" />
           <TextField source="genreName" />
-          <TextField source="rating" />
+          <NumberField source="rating" />
           <TextField source="imageUrl" />
 					<EditButton label="Edit" />
         </Datagrid>
@@ -27,7 +27,7 @@ export const MovieShow = props => {
 					<TextField source="releaseYear" />
 					<TextField source="genreName"/>
 					<TextField source="genreImageUrl" />
-					<TextField source="rating" />
+					<NumberField source="rating" />
 					<TextField source="imageUrl"/>       
 			</SimpleShowLayout>
 	 </Show>

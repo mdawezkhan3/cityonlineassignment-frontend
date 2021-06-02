@@ -1,5 +1,5 @@
 import React from 'react';
-import { SimpleForm, TextInput, required, useDataProvider } from 'react-admin';
+import { SimpleForm, TextInput, NumberInput, required, useDataProvider } from 'react-admin';
 import { FormToolbar } from '../customComponents/formToolbar';
 import { AddableReferenceInput } from '../customComponents/addableReferenceInput';
 
@@ -26,7 +26,7 @@ export const MoviesForm = (props) => {
         validate={required()}
         label="Genre"
       />
-      <TextInput source="rating" label="Rating" />
+      <NumberInput source="rating" label="Rating" validate={required()} />
       <TextInput source="imageUrl" label="ImageUrl" />
 		</SimpleForm>
 	);
