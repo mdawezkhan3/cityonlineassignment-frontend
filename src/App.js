@@ -1,25 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
+import { fetchUtils, Admin, Resource } from 'react-admin';
+import MovieIcon from '@material-ui/icons/Movie';
+import TheatersIcon from '@material-ui/icons/Theaters';
+import { BASE_DOMAIN } from './config';
+import simpleRestProvider from 'ra-data-simple-rest';
+import { GenresCreate, GenresEdit, GenresList } from './components/genres';
+import { MoviesCreate, MoviesEdit, MoviesList, MovieShow } from './components/movies';
+import customRoutes from './components/customComponents/customRoutes';
+import { CustomLayout } from './components/customComponents/customLayout';
+import Homescreen from "./components/homescreen/homescreen";
 
-function App() {
+
+const httpClient = (url, options = {}) => {
+  if (!options.headers) {
+      options.headers = new Headers({ Accept: 'application/json' });
+  }
+
+  return fetchUtils.fetchJson(url, options);
+};
+const dataProvider = simpleRestProvider(BASE_DOMAIN,httpClient);
+
+const App = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      <Admin customRoutes={customRoutes} dashboard={Homescreen} dataProvider={dataProvider} layout={CustomLayout} >
+        <Resource
+              name="genres"
+              options={{label: "Genres"}}
+              edit={GenresEdit}
+              list={GenresList}
+              create={GenresCreate}
+              icon={TheatersIcon}
+          />
+          <Resource
+              name="movies"
+              options={{label: "Movies"}}
+              edit={MoviesEdit}
+              show={MovieShow}
+              list={MoviesList}
+              create={MoviesCreate}
+              icon={MovieIcon}
+          />
+    </Admin>
+    );
 }
 
 export default App;
+
